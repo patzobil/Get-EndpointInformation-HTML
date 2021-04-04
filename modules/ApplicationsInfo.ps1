@@ -33,11 +33,11 @@ for ($i = 0; $i -lt $w.Count; $i++) {
         $AppInfo += $g
     }
 }
-
+#>
 $AppInfo = $AppInfo | Sort-Object Name | ConvertTo-Html -Fragment -PreContent "<h2 id='appsInfo'>Installed Applications</h2>"
 $AppInfo = $AppInfo -replace '<table>','<div class="container"><input type="text" id="applicationsInput" onkeyup="myAppsFunction()" placeholder="Search for Application Names..." title="Type in some text"></input><table id="appsTable" class="table table-dark table-hover table-striped table-bordered">'
 $AppInfo = $AppInfo -replace '<tr><th>','<thead><tr><th>'
 $AppInfo = $AppInfo -replace '</th></tr>','</th></tr></thead><tbody>'
-$AppInfo = $AppInfo -replace '</table>','</tbody></table></div>' #>
+$AppInfo = $AppInfo -replace '</table>','</tbody></table></div>' 
 #! ************************************** Installed Applications Info ***************************************
 #endregion
