@@ -13,3 +13,6 @@ bin/x64/Write-Progress-ForEXEMSI.ps1
 Get-EndpointInfo-HTML.exe
 releases/Get-EndpointInfo-HTML-ForEXEMSI.ps1
 releases/Write-Progress-ForEXEMSI.ps1
+releases/v1.0.16.0/Get-EndpointInfo-HTML-ForEXEMSI.ps1
+releases/v1.0.16.0/Release v1.0.16.0.md
+releases/v1.0.16.0/Write-Progress-ForEXEMSI.ps1
