@@ -11,5 +11,3 @@ releases/v1.0.16.0/Get-EndpointInfo-HTML-Install.msi
 bin/x64/Get-EndpointInfo-HTML-ForEXEMSI.ps1
 bin/x64/Write-Progress-ForEXEMSI.ps1
 Get-EndpointInfo-HTML.exe
-releases/Get-EndpointInfo-HTML-ForEXEMSI.ps1
-releases/Write-Progress-ForEXEMSI.ps1
