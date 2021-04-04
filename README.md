@@ -21,8 +21,8 @@ Currently Showing Info about the below:
 TODOs:
 
 * [ ] Collect User Info, SID
+* [ ] Capture LogonDomain Information
 * [ ] Public IP is collected but not Displayed
-* [ ] Capture LogonDomain Information and Display it
 * [ ] print route
 * [ ] Collect Windows Event Logs (SYSTEM, Application)  - First 25 Errors/Warnings
 * [ ] Collect local users and groups
