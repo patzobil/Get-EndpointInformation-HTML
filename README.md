@@ -18,7 +18,6 @@ Currently Showing Info about the below:
 > * Installed Applications
 > * Windows Services
 
-
 TODOs:
 
 * [ ] Collect User Info, SID
@@ -27,3 +26,4 @@ TODOs:
 * [ ] print route
 * [ ] Collect Windows Event Logs (SYSTEM, Application)  - First 25 Errors/Warnings
 * [ ] Collect local users and groups
+* [ ] Check Java Versions
