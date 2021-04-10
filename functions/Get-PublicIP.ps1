@@ -4,7 +4,7 @@ function Get-PublicIP {
     [CmdletBinding()]
     param (
     )
-    $uri = 'https://ifconfig.me'
+    $uri = 'https://api.ipify.org'
     Write-Verbose -Message "Pulling public IP from $uri"
     try {
         $invokeRestMethodSplat = @{
