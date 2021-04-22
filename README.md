@@ -9,11 +9,15 @@ Currently Showing Info about the below:
 > * Hostname
 > * Last Boot Time
 > * Operating System
-> * BIOS
-> * Chipset
+> * Hardware
+>
+>   * BIOS
+>   * Chipset
+>   * RAM
 > * PSVersionTable
 > * Logical Disks
 > * Network Adapters
+>
 >   * Hosts File
 > * Installed Applications
 > * Windows Services
@@ -23,7 +27,8 @@ TODOs:
 * [ ] Collect User Info, SID
 * [ ] Capture LogonDomain Information
 * [ ] Public IP is collected but not Displayed
-* [ ] print route
+* [ ] Route Print
 * [ ] Collect Windows Event Logs (SYSTEM, Application)  - First 25 Errors/Warnings
 * [ ] Collect local users and groups
 * [ ] Check Java Versions
+* [ ] Collect Startup Apps
