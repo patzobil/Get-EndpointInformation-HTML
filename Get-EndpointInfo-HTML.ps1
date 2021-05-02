@@ -17,24 +17,31 @@ $cssFinalLocation = "$cssFinalFolder\style.css"
 $logFileFolder = "$PSScriptRoot\logs"
 $logFilePath = "$logFileFolder\$env:computername-$fileDate-Log.log"
 
-#* Check the exportLocation exists, if not create it before proceeding!
-try {
-    if (-not(Test-Path $exportLocation -ErrorAction Stop)){
-        try { New-Item $exportLocation -ItemType Directory -Force -ErrorAction Stop | Out-Null }
-        catch { Write-Output $_.Exception }
-    }
-}catch { Write-Output $_.Exception }
-
 #* Try to start a log file
 try {
     Out-File $logFilePath -ErrorAction Stop
     $logging = 1
     Write-ProgressHelper "Starting a Log: $logFilePath" -StepNumber ($stepCounter++)
     . .\functions\Write-Log.ps1
+    Write-Log -LogText "****************************START****************************"
 }catch { 
     Write-Output "Log will not be kept, as an error occured while creating the log file in $logFileFolder"
     $logging = 0
     . .\functions\Write-Log.ps1
+}
+
+#* Check the exportLocation exists, if not create it before proceeding!
+if (-not(Test-Path $exportLocation)){
+    Write-Log -LogType W -LogText "Directory does not exist : $exportLocation"
+    try { 
+        New-Item $exportLocation -ItemType Directory -Force -ErrorAction Stop | Out-Null
+        Write-Log -LogText "Directory Created : $exportLocation"
+    }catch { 
+        Write-Log -LogType E -LogText ($_.Exception).ToString()
+        Write-Output "Directory could not be created.... Stopping script"
+        Write-Log -LogText "****************************END****************************"
+        exit
+    }
 }
 #! ************************************** PATHS & LOGS ***************************************
 #endregion
@@ -43,29 +50,51 @@ try {
 #* ************************************** MODULES ***************************************
 Write-ProgressHelper "Getting Computer Name" -StepNumber ($stepCounter++)
 . .\modules\Hostname.ps1
-Write-Log -LogType W -LogText "Just a warning, is it logged or is it not?"
+Write-Log -LogText "Getting Computer Name"
+
 Write-ProgressHelper "Getting Last Boot Time" -StepNumber ($stepCounter++)
 . .\modules\LastBootInfo.ps1
+Write-Log -LogText "Getting Last Boot Time"
+
 Write-ProgressHelper "Getting OS Info" -StepNumber ($stepCounter++)
 . .\modules\OSInfo.ps1
+Write-Log -LogText "Getting OS Info"
+
 Write-ProgressHelper "Getting PowerShell Version Table" -StepNumber ($stepCounter++)
 . .\modules\PSVersionTable.ps1
+Write-Log -LogText "Getting PowerShell Version Table"
+
 Write-ProgressHelper "Getting Chipset Info" -StepNumber ($stepCounter++)
 . .\modules\ChipsetInfo.ps1
+Write-Log -LogText "Getting Chipset Info"
+
 Write-ProgressHelper "Getting RAM Info" -StepNumber ($stepCounter++)
 . .\modules\RAMInfo.ps1
+Write-Log -LogText "Getting RAM Info"
+
 Write-ProgressHelper "Getting BIOS Info" -StepNumber ($stepCounter++)
 . .\modules\BIOSInfo.ps1
+Write-Log -LogText "Getting BIOS Info"
+
 Write-ProgressHelper "Getting Disk Info" -StepNumber ($stepCounter++)
 . .\modules\LogicalDisks.ps1
+Write-Log -LogText "Getting Disk Info"
+
 Write-ProgressHelper "Getting NIC Info" -StepNumber ($stepCounter++)
 . .\modules\NetworkAdapters.ps1
+Write-Log -LogText "Getting NIC Info"
+
 Write-ProgressHelper "Getting Hosts File Info" -StepNumber ($stepCounter++)
 . .\modules\HostsFile.ps1
+Write-Log -LogText "Getting Hosts File Info"
+
 Write-ProgressHelper "Getting Application Info" -StepNumber ($stepCounter++)
 # . .\modules\ApplicationsInfo.ps1
+Write-Log -LogText "Getting Application Info"
+
 Write-ProgressHelper "Getting Windows Services Info" -StepNumber ($stepCounter++)
 # . .\modules\WindowsServices.ps1
+Write-Log -LogText "Getting Windows Services Info"
 #! ************************************** MODULES ***************************************
 #endregion
 
@@ -110,22 +139,17 @@ $HTMLExportLocation = "$exportLocation\$env:computername-$fileDate-Report.html"
 #* Generate HTML File
 try {
     $HTML | Out-File $HTMLExportLocation -Encoding ascii -ErrorAction Stop
-}
-catch [System.IO.DirectoryNotFoundException]{
-    #Remove the Write-Output because when running in EXE you will have errors...
-    # Write-Output $_.Exception
-    try {
-        New-Item $exportLocation -ItemType Directory -ErrorAction Stop
-        $HTML | Out-File $HTMLExportLocation -Encoding ascii -ErrorAction Stop
-    }
-    catch {
-        Write-Output $_.Exception
-    }
+    Write-Log -LogText "Generated HTML File Export"
+}catch{
+    Write-Log -LogType E -LogText "Could not generate HTML File Export."
+    Write-Log -LogType E -LogText "$_.Exception"
+    exit
 }
 #! ************************************** EXPORT HTML ***************************************
 
 
 #* OPEN HTML FILE ON BROWSER AFTER COLLECTION
+Write-Log -LogText "Opening HTML Export in Default Browser"
 Invoke-Item $HTMLExportLocation
 #endregion
 
@@ -136,9 +160,13 @@ Invoke-Item $HTMLExportLocation
 
 #* ************************************** SHOW WIN10 NOTIFICATION ***************************************
 . .\functions\Show-Notification.ps1
-Show-Notification "Script Get-PCInfo-HTML complete, please find the exported file at $HTMLExportLocation"
+try {
+    Show-Notification "Script Get-PCInfo-HTML complete, please find the exported file at $HTMLExportLocation"
+    Write-Log -LogText "Script Complete Windows 10 Notification Sent"
+}
+catch {
+    
+}
 #! ************************************** SHOW WIN10 NOTIFICATION ***************************************
 
-# Stop-Transcript
-
-# PAUSE
+Write-Log -LogText "****************************END****************************"
