@@ -9,7 +9,7 @@ $cssBaseFolder = "$PSScriptRoot\css"
 $cssFinalFolder = "$exportLocation\css"
 $cssBaseLocation = "$cssBaseFolder\style.css"
 $cssFinalLocation = "$cssFinalFolder\style.css"
-$logFileLocation = "$PSScriptRoot\logs"
+$logFileFolder = "$PSScriptRoot\logs"
 
 #* Check the exportLocation exists, if not create it before proceeding!
 try {
@@ -25,9 +25,14 @@ try {
 #* ************************************** MODULES ***************************************
 Write-ProgressHelper "Getting Date & Time" -StepNumber ($stepCounter++)
 . .\modules\DateTime.ps1
-$logFile = "$logFileLocation\$env:computername-$fileDate-Log.log"
-Write-ProgressHelper "Starting a Log: $logFile" -StepNumber ($stepCounter++)
-. .\functions\Write-Log.ps1
+
+$logFilePath = "$logFileFolder\$env:computername-$fileDate-Log.log"
+Write-ProgressHelper "Starting a Log: $logFilePath" -StepNumber ($stepCounter++)
+try {
+    Out-File $logFilePath -ErrorAction Stop
+    . .\functions\Write-Log.ps1
+}catch { Write-Output "Log will not be kept, as an error occured while creating the log file: $_.Exception" }
+
 Write-ProgressHelper "Getting Computer Name" -StepNumber ($stepCounter++)
 . .\modules\Hostname.ps1
 Write-ProgressHelper "Getting Last Boot Time" -StepNumber ($stepCounter++)
@@ -47,9 +52,9 @@ Write-ProgressHelper "Getting NIC Info" -StepNumber ($stepCounter++)
 Write-ProgressHelper "Getting Hosts File Info" -StepNumber ($stepCounter++)
 . .\modules\HostsFile.ps1
 Write-ProgressHelper "Getting Application Info" -StepNumber ($stepCounter++)
-. .\modules\ApplicationsInfo.ps1
-Write-ProgressHelper "Getting Services Info" -StepNumber ($stepCounter++)
-. .\modules\WindowsServices.ps1
+# . .\modules\ApplicationsInfo.ps1
+Write-ProgressHelper "Getting Windows Services Info" -StepNumber ($stepCounter++)
+# . .\modules\WindowsServices.ps1
 #! ************************************** MODULES ***************************************
 #endregion
 
