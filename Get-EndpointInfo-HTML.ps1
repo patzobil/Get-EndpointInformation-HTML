@@ -1,33 +1,23 @@
 . .\functions\Write-Progress.ps1
-$script:steps = ([System.Management.Automation.PsParser]::Tokenize((Get-Content "$PSScriptRoot\Get-EndpointInfo-HTML.ps1$($MyInvocation.MyCommand.Name)"), [ref]$null) | Where-Object { $_.Type -eq 'Command' -and $_.Content -eq 'Write-ProgressHelper' }).Count
+$script:steps = ([System.Management.Automation.PsParser]::Tokenize((Get-Content "$PSScriptRoot\$($MyInvocation.MyCommand.Name)"), [ref]$null) | Where-Object { $_.Type -eq 'Command' -and $_.Content -eq 'Write-ProgressHelper' }).Count
 $stepCounter = 0
 
 #region FilePaths
 #* ************************************** PATHS ***************************************
 $exportLocation = "$env:USERPROFILE\Desktop\exports"
-# $exportLocation = "$PSScriptRoot\exports"
 $cssBaseFolder = "$PSScriptRoot\css"
 $cssFinalFolder = "$exportLocation\css"
-
 $cssBaseLocation = "$cssBaseFolder\style.css"
-$cssFinalLocation= "$cssFinalFolder\style.css"
+$cssFinalLocation = "$cssFinalFolder\style.css"
+$logFileLocation = "$PSScriptRoot\logs"
 
 #* Check the exportLocation exists, if not create it before proceeding!
 try {
     if (-not(Test-Path $exportLocation -ErrorAction Stop)){
-        try {
-            New-Item $exportLocation -ItemType Directory -Force -ErrorAction Stop | Out-Null
-        }
-        catch {
-            Write-Output $_.Exception
-        }
+        try { New-Item $exportLocation -ItemType Directory -Force -ErrorAction Stop | Out-Null }
+        catch { Write-Output $_.Exception }
     }
-}
-catch {
-    Write-Output $_.Exception
-    # $cssFinalLocation = $cssBaseLocation
-
-}
+}catch { Write-Output $_.Exception }
 #! ************************************** PATHS ***************************************
 #endregion
 
@@ -35,6 +25,9 @@ catch {
 #* ************************************** MODULES ***************************************
 Write-ProgressHelper "Getting Date & Time" -StepNumber ($stepCounter++)
 . .\modules\DateTime.ps1
+$logFile = "$logFileLocation\$env:computername-$fileDate-Log.log"
+Write-ProgressHelper "Starting a Log: $logFile" -StepNumber ($stepCounter++)
+. .\functions\Write-Log.ps1
 Write-ProgressHelper "Getting Computer Name" -StepNumber ($stepCounter++)
 . .\modules\Hostname.ps1
 Write-ProgressHelper "Getting Last Boot Time" -StepNumber ($stepCounter++)
@@ -59,11 +52,6 @@ Write-ProgressHelper "Getting Services Info" -StepNumber ($stepCounter++)
 . .\modules\WindowsServices.ps1
 #! ************************************** MODULES ***************************************
 #endregion
-
-# $transcriptLocation = "$env:USERPROFILE\Desktop\exports\$env:computername-$fileDate-Console Transcript.txt"
-# Start-Transcript $transcriptLocation -IncludeInvocationHeader -NoClobber
-# Start-Transcript $transcriptLocation -Append
-
 
 #region Get-PublicIP
 #* ************************************** Get-PublicIP Function ***************************************
