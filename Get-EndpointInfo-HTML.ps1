@@ -26,13 +26,16 @@ try {
 }catch { Write-Output $_.Exception }
 
 #* Try to start a log file
-Write-ProgressHelper "Starting a Log: $logFilePath" -StepNumber ($stepCounter++)
 try {
     Out-File $logFilePath -ErrorAction Stop
+    $logging = 1
+    Write-ProgressHelper "Starting a Log: $logFilePath" -StepNumber ($stepCounter++)
     . .\functions\Write-Log.ps1
-}catch { Write-Output "Log will not be kept, as an error occured while creating the log file in $logFileFolder" }
-
-
+}catch { 
+    Write-Output "Log will not be kept, as an error occured while creating the log file in $logFileFolder"
+    $logging = 0
+    . .\functions\Write-Log.ps1
+}
 #! ************************************** PATHS & LOGS ***************************************
 #endregion
 
@@ -40,6 +43,7 @@ try {
 #* ************************************** MODULES ***************************************
 Write-ProgressHelper "Getting Computer Name" -StepNumber ($stepCounter++)
 . .\modules\Hostname.ps1
+Write-Log -LogType W -LogText "Just a warning, is it logged or is it not?"
 Write-ProgressHelper "Getting Last Boot Time" -StepNumber ($stepCounter++)
 . .\modules\LastBootInfo.ps1
 Write-ProgressHelper "Getting OS Info" -StepNumber ($stepCounter++)

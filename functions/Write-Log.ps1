@@ -32,20 +32,23 @@ function Write-Log {
     
     begin {
         $date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-        Write-Host $date
+        # Write-Host $date
     }
     
     process {
-        Write-Host $LogType
+        # Write-Host $LogType
         switch ($LogType) {
             "I" { $LogEntry = "$date - [INFO]: $LogText" }
             "E" { $LogEntry = "$date - [ERROR]: $LogText" }
             "W" { $LogEntry = "$date - [WARNING]: $LogText" }
         }
-        Write-Host $LogEntry
+        # Write-Host $LogEntry
     }
     
     end {
-        $LogEntry | Out-File -FilePath $logFilePath -Append
+        if ($logging -eq 1 ){
+            $LogEntry | Out-File -FilePath $logFilePath -Append
+        }
+
     }
 }
