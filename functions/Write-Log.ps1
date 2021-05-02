@@ -27,12 +27,10 @@ function Write-Log {
 
         [Parameter(Mandatory)]
         [String]$LogText
-        
     )
     
     begin {
         $date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-        # Write-Host $date
     }
     
     process {
@@ -42,13 +40,11 @@ function Write-Log {
             "E" { $LogEntry = "$date - [ERROR]: $LogText" }
             "W" { $LogEntry = "$date - [WARNING]: $LogText" }
         }
-        # Write-Host $LogEntry
     }
     
     end {
         if ($logging -eq 1 ){
             $LogEntry | Out-File -FilePath $logFilePath -Append
         }
-
     }
 }
