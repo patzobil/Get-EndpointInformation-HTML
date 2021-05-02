@@ -1,15 +1,21 @@
+#* Progress Bar
 . .\functions\Write-Progress.ps1
 $script:steps = ([System.Management.Automation.PsParser]::Tokenize((Get-Content "$PSScriptRoot\$($MyInvocation.MyCommand.Name)"), [ref]$null) | Where-Object { $_.Type -eq 'Command' -and $_.Content -eq 'Write-ProgressHelper' }).Count
 $stepCounter = 0
 
+#* Get Date and Time
+Write-ProgressHelper "Getting Date & Time" -StepNumber ($stepCounter++)
+. .\modules\DateTime.ps1
+
 #region FilePaths
-#* ************************************** PATHS ***************************************
+#* ************************************** PATHS & LOGS ***************************************
 $exportLocation = "$env:USERPROFILE\Desktop\exports"
 $cssBaseFolder = "$PSScriptRoot\css"
 $cssFinalFolder = "$exportLocation\css"
 $cssBaseLocation = "$cssBaseFolder\style.css"
 $cssFinalLocation = "$cssFinalFolder\style.css"
 $logFileFolder = "$PSScriptRoot\logs"
+$logFilePath = "$logFileFolder\$env:computername-$fileDate-Log.log"
 
 #* Check the exportLocation exists, if not create it before proceeding!
 try {
@@ -18,21 +24,20 @@ try {
         catch { Write-Output $_.Exception }
     }
 }catch { Write-Output $_.Exception }
-#! ************************************** PATHS ***************************************
-#endregion
 
-#region MODULES
-#* ************************************** MODULES ***************************************
-Write-ProgressHelper "Getting Date & Time" -StepNumber ($stepCounter++)
-. .\modules\DateTime.ps1
-
-$logFilePath = "$logFileFolder\$env:computername-$fileDate-Log.log"
+#* Try to start a log file
 Write-ProgressHelper "Starting a Log: $logFilePath" -StepNumber ($stepCounter++)
 try {
     Out-File $logFilePath -ErrorAction Stop
     . .\functions\Write-Log.ps1
-}catch { Write-Output "Log will not be kept, as an error occured while creating the log file: $_.Exception" }
+}catch { Write-Output "Log will not be kept, as an error occured while creating the log file in $logFileFolder" }
 
+
+#! ************************************** PATHS & LOGS ***************************************
+#endregion
+
+#region MODULES
+#* ************************************** MODULES ***************************************
 Write-ProgressHelper "Getting Computer Name" -StepNumber ($stepCounter++)
 . .\modules\Hostname.ps1
 Write-ProgressHelper "Getting Last Boot Time" -StepNumber ($stepCounter++)

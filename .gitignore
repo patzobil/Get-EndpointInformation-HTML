@@ -7,3 +7,4 @@ Get-EndpointInfo-HTML.ps1.psbuild
 Get-EndpointInfo-HTML.exe
 releases/
 TESTS - ISSUES.md
+logs/
