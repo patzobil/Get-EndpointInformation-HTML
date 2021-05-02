@@ -1,16 +1,9 @@
 TODOs.txt
 TODOs.md
 TODOs.pdf
-css/search-icon.png
-css/search-icon2.png
-css/search-icon2.txt
-cert/root.cer
-cert/root.pvk
 Get-EndpointInformation.psprojs
 Get-EndpointInformation.psproj
 Get-EndpointInfo-HTML.ps1.psbuild
-bin/x64/Get-EndpointInfo-HTML-ForEXEMSI.ps1
-bin/x64/Write-Progress-ForEXEMSI.ps1
 Get-EndpointInfo-HTML.exe
 releases/
 TESTS - ISSUES.md
