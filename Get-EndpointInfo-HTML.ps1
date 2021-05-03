@@ -1,6 +1,6 @@
 #* Progress Bar
 . .\functions\Write-Progress.ps1
-$script:steps = ([System.Management.Automation.PsParser]::Tokenize((Get-Content "$PSScriptRoot\$($MyInvocation.MyCommand.Name)"), [ref]$null) | Where-Object { $_.Type -eq 'Command' -and $_.Content -eq 'Write-ProgressHelper' }).Count
+$script:steps = ([System.Management.Automation.PsParser]::Tokenize((Get-Content "$PSScriptRoot\Get-EndpointInfo-HTML.ps1$($MyInvocation.MyCommand.Name)"), [ref]$null) | Where-Object { $_.Type -eq 'Command' -and $_.Content -eq 'Write-ProgressHelper' }).Count
 $stepCounter = 0
 
 #* Get Date and Time
@@ -89,11 +89,11 @@ Write-ProgressHelper "Getting Hosts File Info" -StepNumber ($stepCounter++)
 Write-Log -LogText "Getting Hosts File Info"
 
 Write-ProgressHelper "Getting Application Info" -StepNumber ($stepCounter++)
-# . .\modules\ApplicationsInfo.ps1
+. .\modules\ApplicationsInfo.ps1
 Write-Log -LogText "Getting Application Info"
 
 Write-ProgressHelper "Getting Windows Services Info" -StepNumber ($stepCounter++)
-# . .\modules\WindowsServices.ps1
+. .\modules\WindowsServices.ps1
 Write-Log -LogText "Getting Windows Services Info"
 #! ************************************** MODULES ***************************************
 #endregion
