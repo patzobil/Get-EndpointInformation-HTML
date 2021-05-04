@@ -4,7 +4,7 @@ Here's a little useful tool for SYSADMINS and Support Helpdesks, to collect vari
 
 Firstly the info is collected into fragments, it is then put together into one CSS formatted HTML Report.
 
-Currently Showing Info about the below:
+#### Currently Collected Info
 
 > * Hostname
 > * Last Boot Time
@@ -22,7 +22,7 @@ Currently Showing Info about the below:
 > * Installed Applications
 > * Windows Services
 
-TODOs:
+#### TO-DO
 
 * [ ] Collect User Info, SID
 * [ ] Capture LogonDomain Information
