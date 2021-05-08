@@ -16,6 +16,7 @@ $cssBaseLocation = "$cssBaseFolder\style.css"
 $cssFinalLocation = "$cssFinalFolder\style.css"
 $logFileFolder = "$PSScriptRoot\logs"
 $logFilePath = "$logFileFolder\$env:computername-$fileDate-Log.log"
+$HTMLExportLocation = "$exportLocation\$env:computername-$fileDate-Report.html"
 
 #* Try to start a log file
 try {
@@ -125,6 +126,7 @@ Write-ProgressHelper "Adding a BackToTop Button" -StepNumber ($stepCounter++)
 
 #region BuildHTML
 #* ************************************** BUILD HTML ***************************************
+Write-ProgressHelper "Building HTML" -StepNumber ($stepCounter++)
 $HTML =`
  ConvertTo-HTML -Body " $topHeader $sideNavigation $BiosInfo $ProcessorInfo $RAMInfo $OSinfo`
   $PSversion $diskArray $NetAdapterInfo $hostsInfo $searchScripts $AppInfo $ServicesInfo $sortTables $topButton"`
@@ -136,26 +138,15 @@ $HTML =`
 
 #region ExportHTML
 #* ************************************** EXPORT HTML ***************************************
-$HTMLExportLocation = "$exportLocation\$env:computername-$fileDate-Report.html"
-# $ZIPArchive = "$exportLocation\$env:computername-$fileDate-Report.zip"
-
-#* Generate HTML File
-try {
-    $HTML | Out-File $HTMLExportLocation -Encoding ascii -ErrorAction Stop
-    Write-Log -LogText "Generated HTML File Export"
-}catch{
-    Write-Log -LogType E -LogText "Could not generate HTML File Export."
-    Write-Log -LogType E -LogText "$_.Exception"
-    exit
-}
+Write-ProgressHelper "Exporting HTML file to $exportLocation..." -StepNumber ($stepCounter++)
+Write-Log -LogText "Exporting HTML file to $exportLocation..."
+. .\html\HTMLExport.ps1
 #! ************************************** EXPORT HTML ***************************************
-
+#endregion
 
 #* OPEN HTML FILE ON BROWSER AFTER COLLECTION
 Write-Log -LogText "Opening HTML Export in Default Browser"
 Invoke-Item $HTMLExportLocation
-#endregion
-
 
 #* ************************************** COMPRESS / ARCHIVE ***************************************
 # Compress-Archive $HTMLExportLocation -DestinationPath $ZIPArchive
