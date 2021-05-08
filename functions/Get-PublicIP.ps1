@@ -19,5 +19,6 @@ function Get-PublicIP {
  
     return $publicIP
 }
+$publicIP = Get-PublicIP
 #! ************************************** Get-PublicIP Function ***************************************
 #endregion

@@ -105,7 +105,6 @@ Write-Log -LogText "Getting Application Info"
 Write-ProgressHelper "Getting Public IP Address" -StepNumber ($stepCounter++)
 Write-Log -LogText "Getting Public IP Address"
 . .\functions\Get-PublicIP.ps1
-$publicIP = Get-PublicIP
 #! ************************************** Get-PublicIP Function ***************************************
 #endregion
 
