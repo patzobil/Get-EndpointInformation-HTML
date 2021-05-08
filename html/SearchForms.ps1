@@ -1,5 +1,3 @@
-#region SearchForms
-#* ************************************** Search Forms ***************************************
 $searchScripts = @"
 <script>
 function myServicesFunction() {
@@ -41,5 +39,3 @@ function myAppsFunction() {
 }
 </script>
 "@
-#! ************************************** Search Forms ***************************************
-#endregion
