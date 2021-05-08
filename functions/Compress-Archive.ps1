@@ -1,4 +1,3 @@
-#* ************************************** COMPRESS / ARCHIVE ***************************************
 if ($logging -eq 1 ){ 
     try {
         Write-Log -LogText "Compressing HTML and log file in archive: $ZIPArchive"
@@ -26,4 +25,3 @@ else {
     try { Compress-Archive $HTMLExportLocation -DestinationPath $ZIPArchive -ErrorAction Stop }
     catch {}
 }
-#! ************************************** COMPRESS / ARCHIVE ***************************************
