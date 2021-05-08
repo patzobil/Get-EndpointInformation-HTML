@@ -1,24 +1,29 @@
 #* ************************************** COMPRESS / ARCHIVE ***************************************
 if ($logging -eq 1 ){ 
     try {
-        Compress-Archive $HTMLExportLocation,$logFilePath -DestinationPath $ZIPArchive -ErrorAction Stop
-        Write-Log -LogText "Compressed HTML and log in archive: $ZIPArchive"
+        Write-Log -LogText "Compressing HTML and log file in archive: $ZIPArchive"
+        Compress-Archive $HTMLExportLocation -DestinationPath $ZIPArchive -ErrorAction Stop
+        Write-Log -LogText "Compressed HTML in archive"
+        try {
+            Compress-Archive $logFilePath -DestinationPath $ZIPArchive -Update -ErrorAction Stop
+            Write-Log -LogText "Compressed log file in archive"
+            Write-Log -LogText "****************************END****************************"
+            Compress-Archive $logFilePath -DestinationPath $ZIPArchive -Update -ErrorAction Stop
+        }
+        catch {
+            Write-Log -LogType E -LogText "Could not compress log file in archive: $ZIPArchive"
+            Write-Log -LogType E -LogText $_.Exception
+            Write-Log -LogText "****************************END****************************"
+        }
     }
     catch {
-        Write-Log -LogText "Could not compress HTML and/or log in archive: $ZIPArchive"
+        Write-Log -LogType E -LogText "Could not compress HTML and log file in archive: $ZIPArchive"
         Write-Log -LogType E -LogText $_.Exception
+        Write-Log -LogText "****************************END****************************"
     }
-    
 }
 else { 
-    try {
-        Compress-Archive $HTMLExportLocation -DestinationPath $ZIPArchive -ErrorAction Stop
-        Write-Log -LogText "Compressed HTML in archive: $ZIPArchive"
-    }
-    catch {
-        Write-Log -LogText "Could not compress HTML in archive: $ZIPArchive"
-        Write-Log -LogType E -LogText $_.Exception
-    }
-    
+    try { Compress-Archive $HTMLExportLocation -DestinationPath $ZIPArchive -ErrorAction Stop }
+    catch {}
 }
 #! ************************************** COMPRESS / ARCHIVE ***************************************

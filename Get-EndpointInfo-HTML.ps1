@@ -163,5 +163,3 @@ Write-ProgressHelper "Compressing HTML and log in archive: $ZIPArchive" -StepNum
 . .\functions\Compress-Archive.ps1
 #! ************************************** COMPRESS / ARCHIVE ***************************************
 #endregion
-
-Write-Log -LogText "****************************END****************************"
