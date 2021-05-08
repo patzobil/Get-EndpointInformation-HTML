@@ -1,5 +1,3 @@
-#region NavigationBar
-#* ************************************** SIDE NAVIGATION BAR ***************************************
 $sideNavigation = @"
 <div class="sidenav">
     <a href="#biosInfo">BIOS</a>
@@ -15,5 +13,3 @@ $sideNavigation = @"
 </div>
 "<div class='main'>
 "@
-#! ************************************** SIDE NAVIGATION BAR ***************************************
-#endregion

@@ -1,5 +1,3 @@
-#region Head/CSS
-#* ************************************** Sort Tables Script ***************************************
 $sortTables = @"
 <script>
 const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;

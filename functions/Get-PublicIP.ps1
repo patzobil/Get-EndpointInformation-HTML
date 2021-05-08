@@ -1,5 +1,3 @@
-#region Get-PublicIPFunction
-#* ************************************** Get-PublicIP Function ***************************************
 function Get-PublicIP {
     [CmdletBinding()]
     param (
@@ -16,9 +14,6 @@ function Get-PublicIP {
     catch {
         Write-Error $_
     }
- 
     return $publicIP
 }
 $publicIP = Get-PublicIP
-#! ************************************** Get-PublicIP Function ***************************************
-#endregion

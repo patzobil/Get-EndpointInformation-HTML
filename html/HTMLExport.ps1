@@ -1,6 +1,3 @@
-#region ExportHTML
-#* ************************************** EXPORT HTML ***************************************
-#* Export the HTML File at the $exportLocation
 try {
     $HTML | Out-File $HTMLExportLocation -Encoding ascii -ErrorAction Stop
     Write-Log -LogText "Generated HTML File Export"
@@ -9,5 +6,3 @@ try {
     Write-Log -LogType E -LogText "$_.Exception"
     exit
 }
-#! ************************************** EXPORT HTML ***************************************
-#endregion

@@ -1,5 +1,3 @@
-#region TopButton
-#* ************************************** Top Button ***************************************
 $topButton= @"
 <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
 <script>
@@ -25,5 +23,3 @@ function topFunction() {
 </script>
 </div>
 "@
-#! ************************************** Top Button ***************************************
-#endregion
