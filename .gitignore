@@ -5,6 +5,7 @@ Get-EndpointInformation.psprojs
 Get-EndpointInformation.psproj
 Get-EndpointInfo-HTML.ps1.psbuild
 Get-EndpointInfo-HTML.exe
+Get-EndpointInfo-HTML-RUNNER.bat
 releases/
 TESTS - ISSUES.md
 logs/
