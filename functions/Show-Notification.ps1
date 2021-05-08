@@ -29,5 +29,10 @@ function Show-Notification {
     $Notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier("PowerShell")
     $Notifier.Show($Toast);
 }
+try {
+    Show-Notification "Script Get-PCInfo-HTML complete, please find the exported file at $HTMLExportLocation"
+    Write-Log -LogText "Script Complete Windows 10 Notification Sent"
+}
+catch {}
 #! ************************************** Show-Notification Function ***************************************
 #endregion

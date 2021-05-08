@@ -17,7 +17,7 @@ $cssFinalLocation = "$cssFinalFolder\style.css"
 $logFileFolder = "$PSScriptRoot\logs"
 $logFilePath = "$logFileFolder\$env:computername-$fileDate-Log.log"
 $HTMLExportLocation = "$exportLocation\$env:computername-$fileDate-Report.html"
-# $ZIPArchive = "$exportLocation\$env:computername-$fileDate-Report.zip"
+$ZIPArchive = "$exportLocation\$env:computername-$fileDate-Report.zip"
 
 #* Try to start a log file
 try {
@@ -109,7 +109,7 @@ Write-Log -LogText "Getting Public IP Address"
 #endregion
 
 #region HTML tags
-#* ************************************** HTML TAGS ***************************************
+#* ************************************** HTML SECTION ***************************************
 Write-ProgressHelper "Creating HTML Head" -StepNumber ($stepCounter++)
 Write-Log -LogText "Creating HTML Head"
 . .\html\HTMLHead.ps1
@@ -133,41 +133,36 @@ Write-Log -LogText "Writing Table Sorting Function"
 Write-ProgressHelper "Adding a BackToTop Button" -StepNumber ($stepCounter++)
 Write-Log -LogText "Adding a BackToTop Button"
 . .\html\TopButton.ps1
-#! ************************************** HTML TAGS ***************************************
-#endregion
 
-#region BuildHTML
-#* ************************************** BUILD HTML ***************************************
+#* BUILD HTML
 Write-ProgressHelper "Building fragments into one HTML" -StepNumber ($stepCounter++)
 Write-Log -LogText "Building fragments into one HTML"
 . .\html\HTMLBuild.ps1
-#! ************************************** BUILD HTML ***************************************
-#endregion
 
-#region ExportHTML
-#* ************************************** EXPORT HTML ***************************************
+#* EXPORT HTML
 Write-ProgressHelper "Exporting HTML file to $exportLocation..." -StepNumber ($stepCounter++)
 Write-Log -LogText "Exporting HTML file to $exportLocation..."
 . .\html\HTMLExport.ps1
-#! ************************************** EXPORT HTML ***************************************
-#endregion
 
 #* OPEN HTML FILE ON BROWSER AFTER COLLECTION
 Write-ProgressHelper "Opening HTML Export in Default Browser" -StepNumber ($stepCounter++)
 Write-Log -LogText "Opening HTML Export in Default Browser"
 Invoke-Item $HTMLExportLocation
+#! ************************************** HTML SECTION ***************************************
+#endregion
 
+#region COMPRESS/ARCHIVE
 #* ************************************** COMPRESS / ARCHIVE ***************************************
-# Compress-Archive $HTMLExportLocation -DestinationPath $ZIPArchive
+Write-ProgressHelper "Compressing HTML and log in archive: $ZIPArchive" -StepNumber ($stepCounter++)
+Write-Log -LogText "Compressing HTML and log in archive: $ZIPArchive"
+. .\functions\Compress-Archive.ps1
 #! ************************************** COMPRESS / ARCHIVE ***************************************
+#endregion
 
+#region Win10 Notification
 #* ************************************** SHOW WIN10 NOTIFICATION ***************************************
 . .\functions\Show-Notification.ps1
-try {
-    Show-Notification "Script Get-PCInfo-HTML complete, please find the exported file at $HTMLExportLocation"
-    Write-Log -LogText "Script Complete Windows 10 Notification Sent"
-}
-catch {}
 #! ************************************** SHOW WIN10 NOTIFICATION ***************************************
+#endregion
 
 Write-Log -LogText "****************************END****************************"
