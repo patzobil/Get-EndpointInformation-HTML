@@ -154,7 +154,6 @@ Invoke-Item $HTMLExportLocation
 #region COMPRESS/ARCHIVE
 #* ************************************** COMPRESS / ARCHIVE ***************************************
 Write-ProgressHelper "Compressing HTML and log in archive: $ZIPArchive" -StepNumber ($stepCounter++)
-Write-Log -LogText "Compressing HTML and log in archive: $ZIPArchive"
 . .\functions\Compress-Archive.ps1
 #! ************************************** COMPRESS / ARCHIVE ***************************************
 #endregion
