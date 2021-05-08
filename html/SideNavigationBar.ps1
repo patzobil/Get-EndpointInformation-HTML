@@ -10,8 +10,8 @@ $sideNavigation = @"
     <a href="#diskInfo">Drives</a>
     <a href="#NICInfo">Network</a>
     <a href="#hostsInfo">Hosts File</a>
-    <a href="#appsInfo">Applications</a>
     <a href="#servicesInfo">Services</a>
+    <a href="#appsInfo">Applications</a>
 </div>
 "<div class='main'>
 "@
