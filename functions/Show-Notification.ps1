@@ -30,8 +30,8 @@ function Show-Notification {
     $Notifier.Show($Toast);
 }
 try {
-    Show-Notification "Script Get-PCInfo-HTML complete, please find the exported file at $HTMLExportLocation"
-    Write-Log -LogText "Script Complete Windows 10 Notification Sent"
+    Show-Notification "Script Get-EndpointInfo-HTML complete, please find the exported file at $HTMLExportLocation"
+    Write-Log -LogText "Script Complete : Windows 10 Notification Sent"
 }
 catch {}
 #! ************************************** Show-Notification Function ***************************************

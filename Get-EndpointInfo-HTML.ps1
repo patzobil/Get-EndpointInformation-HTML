@@ -151,17 +151,17 @@ Invoke-Item $HTMLExportLocation
 #! ************************************** HTML SECTION ***************************************
 #endregion
 
+#region Win10 Notification
+#* ************************************** SHOW WIN10 NOTIFICATION ***************************************
+. .\functions\Show-Notification.ps1
+#! ************************************** SHOW WIN10 NOTIFICATION ***************************************
+#endregion
+
 #region COMPRESS/ARCHIVE
 #* ************************************** COMPRESS / ARCHIVE ***************************************
 Write-ProgressHelper "Compressing HTML and log in archive: $ZIPArchive" -StepNumber ($stepCounter++)
 . .\functions\Compress-Archive.ps1
 #! ************************************** COMPRESS / ARCHIVE ***************************************
-#endregion
-
-#region Win10 Notification
-#* ************************************** SHOW WIN10 NOTIFICATION ***************************************
-. .\functions\Show-Notification.ps1
-#! ************************************** SHOW WIN10 NOTIFICATION ***************************************
 #endregion
 
 Write-Log -LogText "****************************END****************************"
