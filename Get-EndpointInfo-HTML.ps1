@@ -97,7 +97,7 @@ Write-Log -LogText "Getting Hosts File Info"
 . .\modules\HostsFile.ps1
 
 Write-ProgressHelper "Getting Public IP Address" -StepNumber ($stepCounter++)
-Write-Log -LogText "Getting Public IP Address"
+# Write-Log -LogText "Getting Public IP Address"
 . .\functions\Get-PublicIP.ps1
 
 Write-ProgressHelper "Getting Windows Services Info" -StepNumber ($stepCounter++)
@@ -132,8 +132,8 @@ Write-ProgressHelper "Writing Table Sorting Function" -StepNumber ($stepCounter+
 Write-Log -LogText "Writing Table Sorting Function"
 . .\html\SortTables.ps1
 
-Write-ProgressHelper "Adding a BackToTop Button" -StepNumber ($stepCounter++)
-Write-Log -LogText "Adding a BackToTop Button"
+Write-ProgressHelper "Adding a Back-To-Top Button" -StepNumber ($stepCounter++)
+Write-Log -LogText "Adding a Back-To-Top Button"
 . .\html\TopButton.ps1
 
 #* BUILD HTML
