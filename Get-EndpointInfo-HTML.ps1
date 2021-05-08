@@ -1,5 +1,5 @@
 #* Progress Bar
-. .\functions\Write-Progress.ps1
+. .\functions\Write-ProgressHelper.ps1
 $script:steps = ([System.Management.Automation.PsParser]::Tokenize((Get-Content "$PSScriptRoot\$($MyInvocation.MyCommand.Name)"), [ref]$null) | Where-Object { $_.Type -eq 'Command' -and $_.Content -eq 'Write-ProgressHelper' }).Count
 $stepCounter = 0
 
