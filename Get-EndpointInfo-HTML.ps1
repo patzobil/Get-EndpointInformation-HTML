@@ -146,10 +146,7 @@ Write-Log -LogText "Exporting HTML file to $exportLocation..."
 
 #* OPEN HTML FILE ON BROWSER AFTER COLLECTION
 Write-ProgressHelper "Opening HTML Export in Default Browser" -StepNumber ($stepCounter++)
-Write-Log -LogText "Opening HTML Export in Default Browser"
-Invoke-Item $HTMLExportLocation
-#! ************************************** HTML SECTION ***************************************
-#endregion
+. .\html\HTMLOpen.ps1
 
 #region Win10 Notification
 #* ************************************** SHOW WIN10 NOTIFICATION ***************************************
