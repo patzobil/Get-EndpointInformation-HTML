@@ -28,11 +28,11 @@ function Write-Log {
         [Parameter(Mandatory)]
         [String]$LogText
     )
-    
+
     begin {
         $date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     }
-    
+
     process {
         # Write-Host $LogType
         switch ($LogType) {

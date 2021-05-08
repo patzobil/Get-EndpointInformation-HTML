@@ -51,58 +51,59 @@ if (-not(Test-Path $exportLocation)){
 #region MODULES
 #* ************************************** MODULES ***************************************
 Write-ProgressHelper "Getting Computer Name" -StepNumber ($stepCounter++)
-. .\modules\Hostname.ps1
 Write-Log -LogText "Getting Computer Name"
+. .\modules\Hostname.ps1
 
 Write-ProgressHelper "Getting Last Boot Time" -StepNumber ($stepCounter++)
-. .\modules\LastBootInfo.ps1
 Write-Log -LogText "Getting Last Boot Time"
+. .\modules\LastBootInfo.ps1
 
 Write-ProgressHelper "Getting OS Info" -StepNumber ($stepCounter++)
-. .\modules\OSInfo.ps1
 Write-Log -LogText "Getting OS Info"
+. .\modules\OSInfo.ps1
 
 Write-ProgressHelper "Getting PowerShell Version Table" -StepNumber ($stepCounter++)
-. .\modules\PSVersionTable.ps1
 Write-Log -LogText "Getting PowerShell Version Table"
+. .\modules\PSVersionTable.ps1
 
 Write-ProgressHelper "Getting Chipset Info" -StepNumber ($stepCounter++)
-. .\modules\ChipsetInfo.ps1
 Write-Log -LogText "Getting Chipset Info"
+. .\modules\ChipsetInfo.ps1
 
 Write-ProgressHelper "Getting RAM Info" -StepNumber ($stepCounter++)
-. .\modules\RAMInfo.ps1
 Write-Log -LogText "Getting RAM Info"
+. .\modules\RAMInfo.ps1
 
 Write-ProgressHelper "Getting BIOS Info" -StepNumber ($stepCounter++)
-. .\modules\BIOSInfo.ps1
 Write-Log -LogText "Getting BIOS Info"
+. .\modules\BIOSInfo.ps1
 
 Write-ProgressHelper "Getting Disk Info" -StepNumber ($stepCounter++)
-. .\modules\LogicalDisks.ps1
 Write-Log -LogText "Getting Disk Info"
+. .\modules\LogicalDisks.ps1
 
 Write-ProgressHelper "Getting NIC Info" -StepNumber ($stepCounter++)
-. .\modules\NetworkAdapters.ps1
 Write-Log -LogText "Getting NIC Info"
+. .\modules\NetworkAdapters.ps1
 
 Write-ProgressHelper "Getting Hosts File Info" -StepNumber ($stepCounter++)
-. .\modules\HostsFile.ps1
 Write-Log -LogText "Getting Hosts File Info"
-
-Write-ProgressHelper "Getting Application Info" -StepNumber ($stepCounter++)
-. .\modules\ApplicationsInfo.ps1
-Write-Log -LogText "Getting Application Info"
+. .\modules\HostsFile.ps1
 
 Write-ProgressHelper "Getting Windows Services Info" -StepNumber ($stepCounter++)
-. .\modules\WindowsServices.ps1
 Write-Log -LogText "Getting Windows Services Info"
+. .\modules\WindowsServices.ps1
+
+Write-ProgressHelper "Getting Application Info" -StepNumber ($stepCounter++)
+Write-Log -LogText "Getting Application Info"
+. .\modules\ApplicationsInfo.ps1
 #! ************************************** MODULES ***************************************
 #endregion
 
 #region Get-PublicIP
 #* ************************************** Get-PublicIP Function ***************************************
 Write-ProgressHelper "Getting Public IP Address" -StepNumber ($stepCounter++)
+Write-Log -LogText "Getting Public IP Address"
 . .\functions\Get-PublicIP.ps1
 $publicIP = Get-PublicIP
 #! ************************************** Get-PublicIP Function ***************************************
@@ -111,16 +112,27 @@ $publicIP = Get-PublicIP
 #region HTML tags
 #* ************************************** HTML TAGS ***************************************
 Write-ProgressHelper "Creating HTML Head" -StepNumber ($stepCounter++)
+Write-Log -LogText "Creating HTML Head"
 . .\html\HTMLHead.ps1
+
 Write-ProgressHelper "Creating the Header" -StepNumber ($stepCounter++)
+Write-Log -LogText "Creating the Header"
 . .\html\TopHeader.ps1
+
 Write-ProgressHelper "Creating the Side Navigation Bar" -StepNumber ($stepCounter++)
+Write-Log -LogText "Creating the Side Navigation Bar"
 . .\html\SideNavigationBar.ps1
+
 Write-ProgressHelper "Creating SearchForms" -StepNumber ($stepCounter++)
+Write-Log -LogText "Creating SearchForms"
 . .\html\SearchForms.ps1
+
 Write-ProgressHelper "Writing Table Sorting Function" -StepNumber ($stepCounter++)
+Write-Log -LogText "Writing Table Sorting Function"
 . .\html\SortTables.ps1
+
 Write-ProgressHelper "Adding a BackToTop Button" -StepNumber ($stepCounter++)
+Write-Log -LogText "Adding a BackToTop Button"
 . .\html\TopButton.ps1
 #! ************************************** HTML TAGS ***************************************
 #endregion
@@ -142,6 +154,7 @@ Write-Log -LogText "Exporting HTML file to $exportLocation..."
 #endregion
 
 #* OPEN HTML FILE ON BROWSER AFTER COLLECTION
+Write-ProgressHelper "Opening HTML Export in Default Browser" -StepNumber ($stepCounter++)
 Write-Log -LogText "Opening HTML Export in Default Browser"
 Invoke-Item $HTMLExportLocation
 
@@ -155,9 +168,7 @@ try {
     Show-Notification "Script Get-PCInfo-HTML complete, please find the exported file at $HTMLExportLocation"
     Write-Log -LogText "Script Complete Windows 10 Notification Sent"
 }
-catch {
-    
-}
+catch {}
 #! ************************************** SHOW WIN10 NOTIFICATION ***************************************
 
 Write-Log -LogText "****************************END****************************"
