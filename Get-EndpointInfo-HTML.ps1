@@ -96,6 +96,10 @@ Write-ProgressHelper "Getting Hosts File Info" -StepNumber ($stepCounter++)
 Write-Log -LogText "Getting Hosts File Info"
 . .\modules\HostsFile.ps1
 
+Write-ProgressHelper "Getting Public IP Address" -StepNumber ($stepCounter++)
+Write-Log -LogText "Getting Public IP Address"
+. .\functions\Get-PublicIP.ps1
+
 Write-ProgressHelper "Getting Windows Services Info" -StepNumber ($stepCounter++)
 Write-Log -LogText "Getting Windows Services Info"
 . .\modules\WindowsServices.ps1
@@ -104,14 +108,6 @@ Write-ProgressHelper "Getting Application Info" -StepNumber ($stepCounter++)
 Write-Log -LogText "Getting Application Info"
 . .\modules\ApplicationsInfo.ps1
 #! ************************************** MODULES ***************************************
-#endregion
-
-#region Get-PublicIP
-#* ************************************** Get-PublicIP Function ***************************************
-Write-ProgressHelper "Getting Public IP Address" -StepNumber ($stepCounter++)
-Write-Log -LogText "Getting Public IP Address"
-. .\functions\Get-PublicIP.ps1
-#! ************************************** Get-PublicIP Function ***************************************
 #endregion
 
 #region HTML tags

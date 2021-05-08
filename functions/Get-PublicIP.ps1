@@ -1,10 +1,10 @@
 function Get-PublicIP {
     [CmdletBinding()]
     param (
+        [string]$uri = 'https://api.ipify.org'
     )
-    $uri = 'https://api.ipify.org'
-    Write-Verbose -Message "Pulling public IP from $uri"
     try {
+        Write-Log -LogText "Retrieving Public IP Address from $uri"
         $invokeRestMethodSplat = @{
             Uri         = $uri
             ErrorAction = 'Stop'
@@ -12,7 +12,8 @@ function Get-PublicIP {
         $publicIP = Invoke-RestMethod @invokeRestMethodSplat
     }
     catch {
-        Write-Error $_
+        Write-Log -LogType E -LogText "Could not retrieve Public IP Address from: $uri"
+        Write-Log -LogType E -LogText $_.Exception
     }
     return $publicIP
 }
