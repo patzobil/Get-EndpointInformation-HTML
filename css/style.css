@@ -1,7 +1,12 @@
-$desktop:1200px;
-$laptop:1024px;
-$tablet:768px;
-$phone:480px;
+
+:root {
+    --desktop:1200px;
+    --laptop:1024px;
+    --tablet:768px;
+    --phone:480px;
+    --bgbodyblack: #292929;
+    --black: #000000;
+}
 
 @media print {
     body{
@@ -18,21 +23,21 @@ html {
 
 body {
     /* # background-color: #2D7384; */
-    background: #292929;
+    background: var(--bgbodyblack);
     /* # background-color: rgb(33,31,35);
     # background-repeat: no-repeat;
     # @include filter-gradient(#53455b, #201e22, horizontal);
     # @include background-image(radial-gradient(circle at top,  rgba(83,69,91,1) 0,rgba(32,30,34,1) 70%)); */
 }
 
-@media (max-width:$laptop) {
+@media (min-width: var(--phone)) {
     body{
         background: #111111;
     }
     
 }
 .main {
-    margin-left: 250px !important;
+    margin-left: 220px !important;
     /* Same as the width of the sidenav */
     margin-top: 3%;
 }
@@ -170,7 +175,7 @@ a { margin: 20px 20px 20px; } a:link { /* unvisited link */ color: green; } a:vi
 
 /* ***NAVIGATTION BARS*** */
 
-.sidenav { height: 100%; width: 200px; position: fixed; z-index: 1; 
+.sidenav { height: 100%; width: 180px; position: fixed; z-index: 1; 
     top: 0; left: 0; background-color: #111; 
     overflow-x: visible; padding-top: 10%; padding-bottom: 5%; margin-bottom: 5%;
  }
