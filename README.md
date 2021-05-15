@@ -8,27 +8,27 @@ Firstly the info is collected into fragments, it is then put together into one C
 
 > * Hostname
 > * Last Boot Time
-> * Operating System
+> * Operating System Info
 > * Hardware
 >
 >   * BIOS
 >   * Chipset
 >   * RAM
 > * PSVersionTable
-> * Logical Disks
+> * Logical/Physical Disks & Network Drives
 > * Network Adapters
 >
 >   * Hosts File
 > * Installed Applications
-> * Windows Services
+> * Windows Services and Status Highlighting
+> * Public IP Address
 
 #### TO-DO
 
 * [ ] Collect User Info, SID
+* [ ] Collect local users and groups
 * [ ] Capture LogonDomain Information
-* [ ] Public IP is collected but not Displayed
 * [ ] Route Print
 * [ ] Collect Windows Event Logs (SYSTEM, Application)  - First 25 Errors/Warnings
-* [ ] Collect local users and groups
 * [ ] Check Java Versions
 * [ ] Collect Startup Apps
