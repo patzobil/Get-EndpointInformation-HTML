@@ -13,19 +13,7 @@ $sideNavigation = @"
     <a class="inactive" onclick="activeLink('serviceslink')" id="serviceslink" href="#servicesInfo">Services</a>
     <a class="inactive" onclick="activeLink('appslink')" id="appslink" href="#appsInfo">Applications</a>
 </div>
-<script>
-function activeLink(id) {
-    var linksArray = ['bioslink', 'cpulink', 'ramlink','oslink', 'pslink', 'driveslink','netlink', 'hostslink', 'serviceslink', 'appslink'];
-    linksArray.forEach(
-        function (elemIds) {
-        document.getElementById(elemIds).setAttribute("class", "inactive");
-        }       
-    );
-
-    var elem = document.getElementById(id);
-    elem.setAttribute("class", "active");
-}
-</script>
+<script type="text/javascript" src="$jsBaseFolder\SideNavigation.js"></script>
 <div class='main'>
 "@
 #! ************************************** SIDE NAVIGATION BAR ***************************************
