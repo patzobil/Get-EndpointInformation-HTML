@@ -1,7 +1,3 @@
-#region SearchForms
-#* ************************************** Search Forms ***************************************
-$searchScripts = @"
-<script>
 function myServicesFunction() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("serviceInput");
@@ -39,7 +35,3 @@ function myAppsFunction() {
         }       
     }
 }
-</script>
-"@
-#! ************************************** Search Forms ***************************************
-#endregion
