@@ -3,7 +3,9 @@
 $sideNavigation = @"
 <div class="sidenav">
     <a class="accordion" id="oslink" href="#OSInfo">Operating System</a>
+    <div class="panel"></div>
     <a class="accordion" id="pslink" href="#PSInfo">PowerShell</a>
+    <div class="panel"></div>
     <a class="accordion" id="hardwarelink" href="#biosInfo">Hardware</a>
     <div class="panel">
     <a class="" id="bioslink" href="#biosInfo">BIOS</a>
@@ -11,12 +13,15 @@ $sideNavigation = @"
     <a class="" id="ramlink" href="#RAMInfo">RAM</a>
     </div>
     <a class="accordion" id="driveslink" href="#diskInfo">Drives</a>
+    <div class="panel"></div>
     <a class="accordion" id="netlink" href="#NICInfo">Network</a>
     <div class="panel">
     <a class="" id="hostslink" href="#hostsInfo">Hosts File</a>
     </div>
     <a class="accordion" id="serviceslink" href="#servicesInfo">Services</a>
+    <div class="panel"></div>
     <a class="accordion" id="appslink" href="#appsInfo">Applications</a>
+    <div class="panel"></div>
 </div>
 
 <script type="text/javascript" src="$jsBaseFolder\SideNavigation.js"></script>
