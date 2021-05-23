@@ -11,7 +11,8 @@ if (($OSLastBootJoin -match "AM") -or ($OSLastBootJoin -match "PM") ) {
         $bootInfo = "<p class=lastBoot>Last Boot Time: $bootdate</p>"
     }
     catch {
-        Write-Output $_.Exception
+        # Write-Output $_.Exception
+        Write-Log -LogType E -LogText "Could not parse date"
     }
 }else {
     try {
@@ -19,7 +20,8 @@ if (($OSLastBootJoin -match "AM") -or ($OSLastBootJoin -match "PM") ) {
         $bootInfo = "<p class=lastBoot>Last Boot Time: $bootdate</p>"
     }
     catch {
-        Write-Output $_.Exception
+        # Write-Output $_.Exception
+        Write-Log -LogType E -LogText "Could not parse date"
     }
 }
 #! ************************************** Last Boot Time ***************************************
