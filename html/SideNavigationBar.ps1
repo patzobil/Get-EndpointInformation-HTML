@@ -25,8 +25,6 @@ $sideNavigation = @"
 <script type="text/javascript" src="$jsBaseFolder\SideNavigation.js"></script>
 <div class='main'>
 "@
-<<<<<<< HEAD
-=======
 #! ************************************** SIDE NAVIGATION BAR ***************************************
 #endregion
 
@@ -53,4 +51,3 @@ $sideNavigation = @"
 
 
 #>
->>>>>>> css-html
