@@ -1,5 +1,3 @@
-#region Show-NotificationFunction
-#* ************************************** Show-Notification Function ***************************************
 function Show-Notification {
     [cmdletbinding()]
     Param (
@@ -9,10 +7,9 @@ function Show-Notification {
         [parameter(ValueFromPipeline)]
         $ToastText
     )
-
     [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null
     $Template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02)
-
+    
     $RawXml = [xml] $Template.GetXml()
     ($RawXml.toast.visual.binding.text|Where-Object {$_.id -eq "1"}).AppendChild($RawXml.CreateTextNode($ToastTitle)) > $null
     ($RawXml.toast.visual.binding.text|Where-Object {$_.id -eq "2"}).AppendChild($RawXml.CreateTextNode($ToastText)) > $null
@@ -34,5 +31,3 @@ try {
     Write-Log -LogText "Script Complete : Windows 10 Notification Sent"
 }
 catch {}
-#! ************************************** Show-Notification Function ***************************************
-#endregion

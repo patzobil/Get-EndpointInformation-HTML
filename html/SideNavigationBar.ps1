@@ -1,5 +1,3 @@
-#region NavigationBar
-#* ************************************** SIDE NAVIGATION BAR ***************************************
 $sideNavigation = @"
 <div class="sidenav">
     <a class="accordion" id="oslink" href="#OSInfo">Operating System</a>
@@ -27,6 +25,8 @@ $sideNavigation = @"
 <script type="text/javascript" src="$jsBaseFolder\SideNavigation.js"></script>
 <div class='main'>
 "@
+<<<<<<< HEAD
+=======
 #! ************************************** SIDE NAVIGATION BAR ***************************************
 #endregion
 
@@ -53,3 +53,4 @@ $sideNavigation = @"
 
 
 #>
+>>>>>>> css-html

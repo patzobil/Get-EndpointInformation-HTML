@@ -1,11 +1,17 @@
-#* Progress Bar
-. .\functions\Write-Progress.ps1
+#region DateTime
+#* ************************************** Progress Bar **************************************
+. .\functions\Write-ProgressHelper.ps1
 $script:steps = ([System.Management.Automation.PsParser]::Tokenize((Get-Content "$PSScriptRoot\$($MyInvocation.MyCommand.Name)"), [ref]$null) | Where-Object { $_.Type -eq 'Command' -and $_.Content -eq 'Write-ProgressHelper' }).Count
 $stepCounter = 0
+#! ************************************** Progress Bar **************************************
+#endregion
 
-#* Get Date and Time
+#region DateTime
+#* ************************************** Date & Time **************************************
 Write-ProgressHelper "Getting Date & Time" -StepNumber ($stepCounter++)
 . .\modules\DateTime.ps1
+#! ************************************** Date & Time **************************************
+#endregion
 
 #region FilePaths
 #* ************************************** PATHS & LOGS ***************************************
@@ -20,7 +26,7 @@ $logFilePath = "$logFileFolder\$env:computername-$fileDate-Log.log"
 $HTMLExportLocation = "$exportLocation\$env:computername-$fileDate-Report.html"
 $ZIPArchive = "$exportLocation\$env:computername-$fileDate-Report.zip"
 
-#* Try to start a log file
+#* Try to start a log file(if the logs location is writeable)
 try {
     Out-File $logFilePath -ErrorAction Stop
     $logging = 1
@@ -33,7 +39,7 @@ try {
     . .\functions\Write-Log.ps1
 }
 
-#* Check the exportLocation exists, if not create it before proceeding!
+#* Check the exportLocation exists, if not create it before proceeding! Otherwise EXIT
 if (-not(Test-Path $exportLocation)){
     Write-Log -LogType W -LogText "Directory does not exist : $exportLocation"
     try { 
@@ -91,6 +97,10 @@ Write-ProgressHelper "Getting Hosts File Info" -StepNumber ($stepCounter++)
 Write-Log -LogText "Getting Hosts File Info"
 . .\modules\HostsFile.ps1
 
+Write-ProgressHelper "Getting Public IP Address" -StepNumber ($stepCounter++)
+# Write-Log -LogText "Getting Public IP Address"
+. .\functions\Get-PublicIP.ps1
+
 Write-ProgressHelper "Getting Windows Services Info" -StepNumber ($stepCounter++)
 Write-Log -LogText "Getting Windows Services Info"
 . .\modules\WindowsServices.ps1
@@ -99,14 +109,6 @@ Write-ProgressHelper "Getting Application Info" -StepNumber ($stepCounter++)
 Write-Log -LogText "Getting Application Info"
 . .\modules\ApplicationsInfo.ps1
 #! ************************************** MODULES ***************************************
-#endregion
-
-#region Get-PublicIP
-#* ************************************** Get-PublicIP Function ***************************************
-Write-ProgressHelper "Getting Public IP Address" -StepNumber ($stepCounter++)
-Write-Log -LogText "Getting Public IP Address"
-. .\functions\Get-PublicIP.ps1
-#! ************************************** Get-PublicIP Function ***************************************
 #endregion
 
 #region HTML tags
@@ -131,8 +133,8 @@ Write-ProgressHelper "Writing Table Sorting Function" -StepNumber ($stepCounter+
 Write-Log -LogText "Writing Table Sorting Function"
 . .\html\SortTables.ps1
 
-Write-ProgressHelper "Adding a BackToTop Button" -StepNumber ($stepCounter++)
-Write-Log -LogText "Adding a BackToTop Button"
+Write-ProgressHelper "Adding a Back-To-Top Button" -StepNumber ($stepCounter++)
+Write-Log -LogText "Adding a Back-To-Top Button"
 . .\html\TopButton.ps1
 
 #* BUILD HTML
