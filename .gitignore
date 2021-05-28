@@ -9,3 +9,5 @@ Get-EndpointInfo-HTML-RUNNER.bat
 releases/
 TESTS - ISSUES.md
 logs/
+Get-EndpointInfo-HTML-Runner.ps1
+Get-EndpointInfo-HTML.install.log

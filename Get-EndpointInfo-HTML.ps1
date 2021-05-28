@@ -20,6 +20,7 @@ $cssBaseFolder = "$PSScriptRoot\css"
 $cssFinalFolder = "$exportLocation\css"
 $cssBaseLocation = "$cssBaseFolder\style.css"
 $cssFinalLocation = "$cssFinalFolder\style.css"
+$jsBaseFolder = "$PSScriptRoot\js"
 $logFileFolder = "$PSScriptRoot\logs"
 $logFilePath = "$logFileFolder\$env:computername-$fileDate-Log.log"
 $HTMLExportLocation = "$exportLocation\$env:computername-$fileDate-Report.html"
@@ -124,9 +125,9 @@ Write-ProgressHelper "Creating the Side Navigation Bar" -StepNumber ($stepCounte
 Write-Log -LogText "Creating the Side Navigation Bar"
 . .\html\SideNavigationBar.ps1
 
-Write-ProgressHelper "Creating SearchForms" -StepNumber ($stepCounter++)
-Write-Log -LogText "Creating SearchForms"
-. .\html\SearchForms.ps1
+Write-ProgressHelper "Creating Search Tables Scripts" -StepNumber ($stepCounter++)
+Write-Log -LogText "Creating Search Tables Scripts"
+. .\html\SearchScripts.ps1
 
 Write-ProgressHelper "Writing Table Sorting Function" -StepNumber ($stepCounter++)
 Write-Log -LogText "Writing Table Sorting Function"

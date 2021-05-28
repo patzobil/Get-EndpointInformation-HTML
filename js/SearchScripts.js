@@ -1,5 +1,3 @@
-$searchScripts = @"
-<script>
 function myServicesFunction() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("serviceInput");
@@ -36,6 +34,8 @@ function myAppsFunction() {
             }
         }       
     }
+<<<<<<< HEAD:js/SearchScripts.js
 }
-</script>
-"@
+=======
+}
+>>>>>>> css-html:html/SearchForms.ps1
