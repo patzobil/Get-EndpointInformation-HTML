@@ -34,8 +34,3 @@ function myAppsFunction() {
             }
         }       
     }
-<<<<<<< HEAD:js/SearchScripts.js
-}
-=======
-}
->>>>>>> css-html:html/SearchForms.ps1
